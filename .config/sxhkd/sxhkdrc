@@ -38,10 +38,11 @@ super + w
 	$TERMINAL -e sudo nmtui
 super + shift + w
 	$BROWSER
+super + grave
+	passmenu
+
 
 # Et cetera...
-super + grave
-	dmenuunicode
 super + Scroll_Lock
 	killall screenkey || screenkey
 super + Insert
