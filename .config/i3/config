@@ -20,6 +20,10 @@ set $reboot sudo -A reboot
 set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl suspend
 
+# Fibonacci-like tiling
+default_orientation vertical #start in opposite orientation from your monitor
+for_window [class=".*"] split toggle #toggles split at each new window
+
 # #---Dropdown Windows---# #
 # General dropdown window traits. The order can matter.
 for_window [instance="dropdown_*"] floating enable
