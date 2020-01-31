@@ -21,6 +21,7 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 set bg=light
@@ -40,6 +41,12 @@ set clipboard+=unnamedplus
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Colorscheme
+	let g:gruvbox_italic=1
+	set termguicolors
+	set bg=dark
+	colorscheme gruvbox
 
 " Python stuff
 " Going to definition
@@ -63,7 +70,7 @@ autocmd BufWritePre *.py :OR
 	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
-	map <leader>o :setlocal spell! spelllang=en_us<CR>
+	map <leader>o :setlocal spell! spelllang=en_gb<CR>
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 	set splitbelow splitright
@@ -110,7 +117,7 @@ autocmd BufWritePre *.py :OR
 	let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
-	autocmd BufRead,BufNewFile *.tex set filetype=tex
+	autocmd BufRead,BufNewFile *.tex set filetype=tex textwidth=120
 
 " Save file as sudo on files that require root permission
 	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
