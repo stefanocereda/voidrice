@@ -20,6 +20,24 @@ set $reboot sudo -A reboot
 set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl suspend
 
+# Bind the workspaces on three outputs, the outputs are defined in .Xresources_monitor, which is created with the screenlayout scripts.
+# monitor1 is the main one (ws 1-5)
+# monitor2 is a secondary monitor (ws 6-9)
+# monitor3 is only for ws 10
+set_from_resource $monitor_1 i3wm.monitor1 eDP1
+set_from_resource $monitor_2 i3wm.monitor2 eDP1
+set_from_resource $monitor_3 i3wm.monitor3 eDP1
+workspace 1 output $monitor_1
+workspace 2 output $monitor_1
+workspace 3 output $monitor_1
+workspace 4 output $monitor_1
+workspace 5 output $monitor_1
+workspace 6 output $monitor_2
+workspace 7 output $monitor_2
+workspace 8 output $monitor_2
+workspace 9 output $monitor_2
+workspace 10 output $monitor_3
+
 # Fibonacci-like tiling
 default_orientation vertical #start in opposite orientation from your monitor
 for_window [class=".*"] split toggle #toggles split at each new window
@@ -56,7 +74,8 @@ bindsym $mod+Escape		workspace prev
 # bindsym $mod+BackSpace
 bindsym $mod+Shift+BackSpace	exec --no-startup-id prompt "Reboot computer?" "$reboot"
 
-bindsym $mod+grave		exec --no-startup-id passmenu
+bindsym $mod+grave		exec --no-startup-id dmenuunicode
+bindsym $mod+p                  exec --no-startup-id passmenu
 ##bindsym $mod+asciitilde
 
 #STOP/HIDE EVERYTHING:
@@ -94,8 +113,8 @@ bindsym $mod+Shift+i		exec --no-startup-id i3resize up
 bindsym $mod+o			sticky toggle
 bindsym $mod+Shift+o		exec --no-startup-id i3resize right
 
-bindsym $mod+p			exec --no-startup-id mpc toggle
-bindsym $mod+Shift+p		exec --no-startup-id mpc pause
+#bindsym $mod+p			exec --no-startup-id mpc toggle
+#bindsym $mod+Shift+p		exec --no-startup-id mpc pause
 
 bindsym $mod+a			exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=24
 bindsym $mod+Shift+a		exec $term -e pulsemixer
