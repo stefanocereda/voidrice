@@ -60,6 +60,7 @@ bar {
 	position top
 	mode dock
 	modifier None
+	tray_output $monitor_1
 }
 
 # #---Basic Bindings---# #
